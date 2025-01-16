@@ -29,18 +29,18 @@ public class Presenter
 
 	private void OnCalculated()
 	{
-		view.OnCalculated(model.Data.OperationHistory);
+		view.OnCalculated(model.CalculatorState.OperationHistory);
 	}
 
 	private void OnWrongInput()
 	{
-		view.ShowInfo(model.Data.OperationHistory, model.Data.LastInput);
+		view.ShowInfo(model.CalculatorState.OperationHistory, model.CalculatorState.LastInput);
 		view.ShowHideErrorScreen();
 	}
 
 	private void OnLoaded()
 	{
-		view.ShowInfo(model.Data.OperationHistory, model.Data.LastInput);
+		view.ShowInfo(model.CalculatorState.OperationHistory, model.CalculatorState.LastInput);
 	}
 
 	private void OnQuitted(string lastInput)

@@ -4,14 +4,14 @@ public class Bootstrap : MonoBehaviour
 {
 	[SerializeField] 
 	private View view;
-	private DataHandler dataHandler;
+	private SaveLoader _saveLoader;
 	private Model model;
 	private Presenter presenter;
 
 	private void Awake()
 	{
-		dataHandler = new();
-		model = new(dataHandler);
+		_saveLoader = new();
+		model = new(_saveLoader);
 		presenter = new(model, view);
 		
 		model.LoadData();

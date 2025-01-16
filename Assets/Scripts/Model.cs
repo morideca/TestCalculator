@@ -7,20 +7,20 @@ public class Model
 	public event Action OnWrongInput;
 	public event Action OnLoaded;
 
-	public Data Data { get; private set; }
-	private DataHandler dataHandler;
+	public CalculatorState CalculatorState { get; private set; }
+	private SaveLoader _saveLoader;
 
-	public Model(DataHandler dataHandler)
+	public Model(SaveLoader saveLoader)
 	{
-		this.dataHandler = dataHandler;
+		this._saveLoader = saveLoader;
 	}
 	
 	public void LoadData()
 	{
-		Data = dataHandler.Load();
-		if (Data == null)
+		CalculatorState = _saveLoader.Load();
+		if (CalculatorState == null)
 		{
-			Data = new Data();
+			CalculatorState = new CalculatorState();
 		}
 		else
 		{
@@ -71,17 +71,17 @@ public class Model
 
 	private void SaveLastInput(string input)
 	{
-		Data.LastInput = input;
+		CalculatorState.LastInput = input;
 	}
 
 	private void SaveOperationToHistory(string input, string result)
 	{
 		var stringResult = input + $"={result}";
-		Data.OperationHistory.Add(stringResult);
+		CalculatorState.OperationHistory.Add(stringResult);
 	}
 	
 	private void SaveData()
 	{
-		dataHandler.Save(Data);
+		_saveLoader.Save(CalculatorState);
 	}
 }
