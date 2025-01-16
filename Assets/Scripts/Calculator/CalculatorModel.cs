@@ -9,11 +9,11 @@ public class CalculatorModel
 	public event Action OnQuitted;
 
 	public CalculatorState CalculatorState { get; private set; }
-	private SaveLoader<CalculatorState> saveLoader = new("CalculatorState.json");
+	private Save<CalculatorState> save = new("CalculatorState.json");
 	
 	public void LoadData()
 	{
-		CalculatorState = saveLoader.Load();
+		CalculatorState = save.LoadData();
 		if (CalculatorState == null)
 		{
 			CalculatorState = new CalculatorState();
@@ -73,6 +73,6 @@ public class CalculatorModel
 	
 	private void SaveData()
 	{
-		saveLoader.Save(CalculatorState);
+		save.SaveData(CalculatorState);
 	}
 }

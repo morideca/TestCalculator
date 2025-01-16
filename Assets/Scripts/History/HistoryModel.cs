@@ -10,7 +10,7 @@ namespace History
         public HistoryState HistoryState { get; private set; } = new();
         
         private readonly CalculatorModel calculatorModel;
-        private SaveLoader<HistoryState> saveLoader = new("HistoryState.json");
+        private Save<HistoryState> save = new("HistoryState.json");
 
         public HistoryModel(CalculatorModel calculatorModel)
         {
@@ -20,7 +20,7 @@ namespace History
         
         public void LoadData()
         {
-            HistoryState = saveLoader.Load();
+            HistoryState = save.LoadData();
             if (HistoryState == null)
             {
                 HistoryState = new();
@@ -46,7 +46,7 @@ namespace History
 
         private void OnQuit()
         {
-            saveLoader.Save(HistoryState);
+            save.SaveData(HistoryState);
         }
     }
 }

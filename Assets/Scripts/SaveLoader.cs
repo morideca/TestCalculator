@@ -1,22 +1,22 @@
 using System.IO;
 using UnityEngine;
 
-public class SaveLoader<T>
+public class Save<T>
 {
     private readonly string jsonPath;
 	
-    public SaveLoader(string jsonPath)
+    public Save(string jsonPath)
     {
         this.jsonPath = Path.Combine(Application.dataPath, jsonPath);
     }
 
-    public void Save(T type)
+    public void SaveData(T type)
     {
         string jsonData = JsonUtility.ToJson(type);
         File.WriteAllText(jsonPath, jsonData);
     }
 
-    public T Load()
+    public T LoadData()
     {
         if (File.Exists(jsonPath))
         {
