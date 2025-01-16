@@ -1,19 +1,26 @@
 using UnityEngine;
+using History;
 
 public class Bootstrap : MonoBehaviour
 {
 	[SerializeField] 
-	private View view;
-	private SaveLoader _saveLoader;
-	private Model model;
-	private Presenter presenter;
+	private CalculatorView calculatorView;
+	private CalculatorModel calculatorModel;
+	private CalculatorPresenter calculatorPresenter;
+	
+	[SerializeField]
+	private HistoryView historyView;
+	private HistoryModel historyModel;
+	private HistoryPresenter historyPresenter;
 
 	private void Awake()
 	{
-		_saveLoader = new();
-		model = new(_saveLoader);
-		presenter = new(model, view);
+		calculatorModel = new();
+		calculatorPresenter = new(calculatorModel, calculatorView);
+		historyModel = new(calculatorModel);
+		historyPresenter = new(historyModel, historyView);
 		
-		model.LoadData();
+		calculatorModel.LoadData();
+		historyModel.LoadData();
 	}
 }

@@ -1,35 +1,30 @@
-using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public class SaveLoader
+public class SaveLoader<T>
 {
-	private string jsonPath;
+    private readonly string jsonPath;
 	
-	public SaveLoader()
-	{
-		Init();
-	}
+    public SaveLoader(string jsonPath)
+    {
+        this.jsonPath = Path.Combine(Application.dataPath, jsonPath);
+    }
 
-	private void Init()
-	{
-		jsonPath = Application.dataPath + "/../Data.json";
-	}
-	
-	public void Save(CalculatorState operationHistory)
-	{
-		string jsonData = JsonUtility.ToJson(operationHistory);
-		File.WriteAllText(jsonPath, jsonData);
-	}
+    public void Save(T type)
+    {
+        string jsonData = JsonUtility.ToJson(type);
+        File.WriteAllText(jsonPath, jsonData);
+    }
 
-	public CalculatorState Load()
-	{
-		if (File.Exists(jsonPath))
-		{
-			var jsonData = File.ReadAllText(jsonPath);
-			var data = JsonUtility.FromJson<CalculatorState>(jsonData);
-			return data;
-		}
-		else return null;
-	}
+    public T Load()
+    {
+        if (File.Exists(jsonPath))
+        {
+            var jsonData = File.ReadAllText(jsonPath);
+            var data = JsonUtility.FromJson<T>(jsonData);
+            return data;
+        }
+
+        return default;
+    }
 }

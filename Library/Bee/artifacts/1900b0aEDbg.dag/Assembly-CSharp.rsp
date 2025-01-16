@@ -373,11 +373,15 @@
 -analyzer:"C:/Program Files/Unity/Hub/Editor/2022.3.35f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll"
 -analyzer:"C:/Program Files/Unity/Hub/Editor/2022.3.35f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 "Assets/Scripts/Bootstrap.cs"
-"Assets/Scripts/Data.cs"
-"Assets/Scripts/DataHandler.cs"
-"Assets/Scripts/Model.cs"
-"Assets/Scripts/Presenter.cs"
-"Assets/Scripts/View.cs"
+"Assets/Scripts/Calculator/CalculatorModel.cs"
+"Assets/Scripts/Calculator/CalculatorPresenter.cs"
+"Assets/Scripts/Calculator/CalculatorState.cs"
+"Assets/Scripts/Calculator/CalculatorView.cs"
+"Assets/Scripts/History/HistoryModel.cs"
+"Assets/Scripts/History/HistoryPresenter.cs"
+"Assets/Scripts/History/HistoryState.cs"
+"Assets/Scripts/History/HistoryView.cs"
+"Assets/Scripts/SaveLoader.cs"
 -langversion:9.0
 /deterministic
 /optimize-
